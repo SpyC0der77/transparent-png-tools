@@ -1,3 +1,14 @@
+# Project
+
+This project aims to provide tooling for transparent PNGs.
+
+## Tools
+
+| Tool | What it does |
+|------|----------------|
+| **Text fitter** | Safe region from alpha (distance transform + margin); fits wrapped text in the green area; font scales to stay inside; draggable block. |
+| **Border** | Stroke along the shape—outside (expand canvas) or inside (erode edge); color + thickness; PNG download. |
+
 <!-- BEGIN:nextjs-agent-rules -->
 # This is NOT the Next.js you know
 
