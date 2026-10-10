@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Transparent PNG Tools
 
-## Getting Started
+Two browser tools for working with the opaque shape of a transparent PNG: add a border around its silhouette or fit text inside it.
 
-First, run the development server:
+## What it does
+
+- Upload a PNG and switch between Border and Text fitter.
+- Add an outside border that expands the canvas, or an inside border that erodes the edge.
+- Adjust border color and thickness, then download `bordered.png`.
+- Fit wrapped text inside an alpha-derived safe region with an adjustable margin.
+- Drag the text block in the preview to reposition it.
+
+## Run locally
+
+Use Node.js 20.9+ and Bun.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/SpyC0der77/transparent-png-tools.git
+cd transparent-png-tools
+bun install --frozen-lockfile
+bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Purpose |
+| --- | --- |
+| `bun run dev` | Start the development server |
+| `bun run build` | Build the production app |
+| `bun run start` | Serve a production build |
+| `bun run lint` | Run ESLint |
 
-## Learn More
+Run `build` before `start`.
 
-To learn more about Next.js, take a look at the following resources:
+## Dependencies and limitations
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Image processing uses browser canvas and local object URLs. These tools do not upload the image to an API. Text fitter provides an interactive preview; the PNG download action is implemented in Border.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Source layout
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [`components/png-tools-workspace.tsx`](components/png-tools-workspace.tsx): Upload and tool selection.
+- [`components/tools/`](components/tools/): Border and text fitting interfaces.
+- [`lib/mask/`](lib/mask/): Alpha masks, morphology, and safe regions.
+- [`lib/text-fit/`](lib/text-fit/): Text wrapping and font sizing.
